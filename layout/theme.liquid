@@ -40,6 +40,11 @@
     {%- endif -%}
 
     {{ content_for_header }}
+    <style>
+      body {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+      }
+    </style>
 
     {%- liquid
       assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'

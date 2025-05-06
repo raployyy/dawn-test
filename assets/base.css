@@ -22,6 +22,16 @@
   --text-alignment: var(--product-card-text-alignment);
 }
 
+.collection-grid-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 2rem;
+}
+.filter-sidebar {
+  position: sticky;
+  top: 80px;
+}
+
 .collection-card-wrapper .card,
 .contains-card--collection {
   --border-radius: var(--collection-card-corner-radius);
@@ -75,6 +85,126 @@
 }
 
 /* base */
+
+/* Lookbook Grid */
+.lookbook-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 4rem 0;
+}
+
+.lookbook-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lookbook-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.lookbook-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.lookbook-item:hover img {
+  transform: scale(1.05);
+}
+
+.lookbook-item p {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  margin: 0;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #1a1a1a;
+}
+
+/* Testimonials Section */
+.testimonials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 3rem;
+  padding: 5rem 0;
+  background: #f9f9f9;
+}
+
+.testimonial {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.testimonial:hover {
+  transform: translateY(-6px);
+}
+
+.testimonial blockquote {
+  font-style: italic;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin: 0 0 1.5rem;
+  color: #333;
+  position: relative;
+  padding-left: 2rem;
+}
+
+.testimonial blockquote::before {
+  content: "“";
+  font-size: 3rem;
+  color: #d1d1d1;
+  position: absolute;
+  left: 0;
+  top: -10px;
+}
+
+.testimonial p {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin: 0;
+  color: #444;
+  text-align: right;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lookbook-item,
+.testimonial {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+  animation-delay: 0.1s;
+}
+
+.lookbook-item:nth-child(2),
+.testimonial:nth-child(2) { animation-delay: 0.2s; }
+.lookbook-item:nth-child(3),
+.testimonial:nth-child(3) { animation-delay: 0.3s; }
+/* ...and so on */
+
 
 .page-width {
   max-width: var(--page-width);
@@ -236,6 +366,10 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 
 ::selection {
   background-color: rgba(var(--color-foreground), 0.2);
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
 }
 
 .text-body {

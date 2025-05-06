@@ -73,6 +73,21 @@
             </div>
           </div>
 
+          <div class="collection-grid-layout">
+            <aside class="filter-sidebar">
+              {% render 'facets', filters: collection.filters %}
+            </aside>
+            <main class="collection-main">
+              {% paginate collection.products by 24 %}
+                <div class="grid grid--2-col product-grid">
+                  {% for product in collection.products %}
+                    {% render 'product-card', product: product %}
+                  {% endfor %}
+                </div>
+              {% endpaginate %}
+            </main>
+          </div>
+
           <div class="product-count-vertical light" role="status">
             <h2 class="product-count__text text-body">
               <span id="ProductCountDesktop">
@@ -233,7 +248,7 @@
           "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__2.label"
         }
       ]
-    },    
+    },
     {
       "type": "color_scheme",
       "id": "color_scheme",

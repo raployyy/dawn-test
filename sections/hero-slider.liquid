@@ -1,0 +1,83 @@
+{% stylesheet %}
+  .hero-slider {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  .hero-slide.active {
+    opacity: 1;
+    position: relative;
+    display: block;
+  }
+{% endstylesheet %}
+
+<div class="hero-slider">
+  {% for block in section.blocks %}
+    <div class="hero-slide {% if forloop.first %}active{% endif %}">
+      <img
+        src="{{ block.settings.image | image_url: width: 1200 }}"
+        alt=""
+        style="width:100%"
+        width="{{ block.settings.image.width }}"
+        height="{{ block.settings.image.height }}"
+      >
+    </div>
+  {% else %}
+    <p style="text-align:center; padding: 40px;">No slides added. Please add slides in the section settings.</p>
+  {% endfor %}
+</div>
+
+<script>
+  let current = 0;
+  const slides = document.querySelectorAll('.hero-slide');
+  if (slides.length > 1) {
+    // Slide interval set to 4000 milliseconds (4 seconds)
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 4000);
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Hero Slider",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Slide Image"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "Hero Slider",
+      "category": "Image",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

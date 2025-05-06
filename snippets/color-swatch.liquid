@@ -1,0 +1,8 @@
+{% assign color = option.name | downcase %}
+{% if color contains 'color' %}
+  <div class="swatches">
+    {% for value in option.values %}
+      <label style="background-color: {{ value }};" class="swatch">{{ value }}</label>
+    {% endfor %}
+  </div>
+{% endif %}
